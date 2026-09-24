@@ -47,6 +47,7 @@ interface StoreContextType {
   openProductDetail: (product: Product) => void;
   closeProductDetail: () => void;
   updateProductInList: (product: Product) => void;
+  addNewProduct: (product: Product) => void;
 
   // Cart
   cart: CartItem[];
@@ -218,6 +219,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const updateProductInList = (updated: Product) => {
     setProductsList(prev => prev.map(p => p.id === updated.id ? updated : p));
     addToast('Product Updated', `Saved changes for "${updated.title}"`, 'info');
+  };
+
+  const addNewProduct = (newProd: Product) => {
+    setProductsList(prev => [newProd, ...prev]);
+    addToast('Product Added 🚀', `"${newProd.title}" successfully added to live catalog`, 'success');
   };
 
   const addToCart = (product: Product, quantity = 1, selectedColor?: string, selectedSize?: string, selectedStorage?: string) => {
@@ -496,6 +502,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         openProductDetail,
         closeProductDetail,
         updateProductInList,
+        addNewProduct,
         cart,
         addToCart,
         removeFromCart,

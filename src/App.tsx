@@ -44,11 +44,11 @@ const MainContent: React.FC = () => {
   } = useStore();
 
   // If in merchant or admin portal
-  if (portalMode === 'seller') {
+  if (portalMode === 'seller' || activeTab === 'seller') {
     return <SellerDashboard />;
   }
 
-  if (portalMode === 'admin') {
+  if (portalMode === 'admin' || activeTab === 'admin') {
     return <AdminDashboard />;
   }
 

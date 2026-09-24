@@ -10,7 +10,8 @@ import {
   Sparkles,
   ShoppingBag,
   ListFilter,
-  Film
+  Film,
+  ShieldCheck
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -21,7 +22,8 @@ export const Navbar: React.FC = () => {
     setSelectedCategoryId,
     setFilterState,
     activeTrackingOrder,
-    openOrderTracking
+    openOrderTracking,
+    setPortalMode
   } = useStore();
 
   const handleCategoryClick = (catId: string) => {
@@ -151,6 +153,28 @@ export const Navbar: React.FC = () => {
             }}
           >
             <Film size={15} /> Video Ads (1080p)
+          </button>
+
+          <button
+            onClick={() => {
+              setPortalMode('admin');
+              setActiveTab('admin');
+            }}
+            style={{
+              padding: '0.4rem 0.85rem',
+              borderRadius: '9999px',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+              color: '#818cf8',
+              background: 'rgba(99, 102, 241, 0.1)',
+              border: '1px solid rgba(99, 102, 241, 0.35)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              cursor: 'pointer'
+            }}
+          >
+            <ShieldCheck size={15} /> Admin Portal
           </button>
 
           {activeTrackingOrder && (
